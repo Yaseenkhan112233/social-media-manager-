@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "720225873696",
+    "project_id": "socialsmartaigenerator",
+    "storage_bucket": "socialsmartaigenerator.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720225873696:android:e62fbfdb6955e864adb145",
+        "android_client_info": {
+          "package_name": "com.socialsmartaigenerator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720225873696-3otp7tatd1rujfn4pt014nq673h26oq3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.socialsmartaigenerator",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "720225873696-frl0iq95c92j95cknhob77fpnub9ucod.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeiiWtn2kr_aYS5v1iR_TyqhH_HeydYUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720225873696-frl0iq95c92j95cknhob77fpnub9ucod.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
