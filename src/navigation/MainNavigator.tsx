@@ -10,6 +10,7 @@ import RecentPostScreen from '../Screens/RecentPostMain';
 import GenerationScreen from '../Screens/GenerationScreen';
 import HashtagsScreen from '../Screens/HashtagsScreen';
 import Influencer from '../Screens/Influencer';
+import SubscriptionScreen from '../Screens/SubscriptionScreen';
 // import Subscription from '../Screens/Subscription';
 // import SubscriptionScreen from '../Screens/SubscriptionScreen';
 // import NewGeneration from '../Screens/NewGeneration';

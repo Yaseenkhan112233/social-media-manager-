@@ -11,6 +11,7 @@ import HashtagsScreen from '../Screens/HashtagsScreen';
 import Influencer from '../Screens/Influencer';
 import NewGeneration from '../Screens/NewGeneration';
 import NotificationScreen from '../Screens/NotificationScreen';
+import SubscriptionScreen from '../Screens/SubscriptionScreen';
 
 const HomeStack = createStackNavigator<HomeStackParamList>();
 
@@ -28,6 +29,10 @@ const HomeStackNavigator = () => {
       <HomeStack.Screen
         name="NotificationsMain"
         component={NotificationScreen}
+      />
+      <HomeStack.Screen
+        name="SubscriptionScreen"
+        component={SubscriptionScreen}
       />
     </HomeStack.Navigator>
   );

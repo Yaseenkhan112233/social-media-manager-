@@ -227,3 +227,5 @@ export const useSavedPosts = () => {
   }
   return context;
 };
+
+export default SavedPostsContext;
