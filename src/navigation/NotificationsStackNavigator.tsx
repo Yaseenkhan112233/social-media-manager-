@@ -9,7 +9,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 const NotificationsStack = createStackNavigator<NotificationsStackParamList>();
 const NotificationsStackNavigator = () => {
   return (
-    <NotificationsStack.Navigator>
+    <NotificationsStack.Navigator screenOptions={{headerShown: false}}>
       <NotificationsStack.Screen
         name="NotificationsMain"
         component={NotificationScreen}

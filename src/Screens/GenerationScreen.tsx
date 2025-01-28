@@ -12,9 +12,10 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Layout} from '../constant/layout';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const GenerationScreen = () => {
-  const {navigate} = useNavigation();
+  const {navigate, goBack} = useNavigation();
   const scrollViewRef = useRef(null);
   const [selectedType, setSelectedType] = useState(null);
   const [selectedCreativeType, setSelectedCreativeType] = useState(null);
@@ -246,6 +247,11 @@ const GenerationScreen = () => {
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.scrollContent}>
             <View style={styles.contentContainer}>
+              <TouchableOpacity
+                onPress={() => goBack()}
+                style={styles.backButton}>
+                <Icon name="arrow-back" size={24} color="#000" />
+              </TouchableOpacity>
               <Text style={styles.sectionTitle}>Select Content Type</Text>
               <View style={styles.gridContainer}>
                 <View style={styles.row}>
@@ -327,6 +333,15 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
+  },
+  backButton: {
+    marginRight: 10,
+    // position: 'static',
+  },
+  backArrow: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#000',
   },
   contentContainer: {
     padding: Layout.PADDING_MEDIUM,

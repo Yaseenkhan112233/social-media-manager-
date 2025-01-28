@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
-import {RouteProp, useRoute} from '@react-navigation/native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {RecentPostStackParamList} from '../navigation/NavigationTypes';
 
 type RecentPostScreenRouteProp = RouteProp<
@@ -11,6 +11,7 @@ type RecentPostScreenRouteProp = RouteProp<
 const RecentPostScreen = () => {
   const {params} = useRoute<RecentPostScreenRouteProp>();
   const {id, title, image}: any = params;
+  const goback = useNavigation();
 
   return (
     <View style={styles.container}>

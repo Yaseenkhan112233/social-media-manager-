@@ -9,7 +9,7 @@ import Influencer from '../Screens/Influencer';
 const ProfileStack = createStackNavigator<ProfileStackParamList>();
 const ProfileStackNavigator = () => {
   return (
-    <ProfileStack.Navigator>
+    <ProfileStack.Navigator screenOptions={{headerShown: false}}>
       <ProfileStack.Screen name="influencer" component={Influencer} />
       <ProfileStack.Screen
         name="ProfileDetail"

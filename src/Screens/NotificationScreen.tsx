@@ -9,11 +9,14 @@ import {
   Dimensions,
 } from 'react-native';
 import {useSavedPosts} from '../context/SavedPostsContext';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const NotificationScreen = () => {
   const {savedPosts, removePost} = useSavedPosts();
+  const {goBack} = useNavigation();
 
   if (savedPosts.length === 0) {
     return (
@@ -25,6 +28,9 @@ const NotificationScreen = () => {
 
   return (
     <ScrollView style={styles.container}>
+      <TouchableOpacity onPress={() => goBack()} style={styles.backButton}>
+        <Icon name="arrow-back" size={24} color="#000" />
+      </TouchableOpacity>
       {savedPosts.map(post => (
         <View key={post.timestamp} style={styles.postCard}>
           <Image
@@ -83,6 +89,9 @@ const styles = StyleSheet.create({
     height: 200,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
+  },
+  backButton: {
+    marginRight: 10,
   },
   postContent: {
     padding: 16,

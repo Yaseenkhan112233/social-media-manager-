@@ -599,7 +599,7 @@
 // });
 // export default NewGeneration;
 
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useState, useCallback, useMemo} from 'react';
 import {
   View,
