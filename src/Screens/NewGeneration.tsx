@@ -601,6 +601,8 @@
 
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useState, useCallback, useMemo} from 'react';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import {
   View,
   Text,
@@ -620,7 +622,7 @@ import {IMAGES_PATH} from '../constant/imagesPath';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import {useSavedPosts} from '../context/SavedPostsContext';
-
+import CustomHeader from '../Components/CustomHeader';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
@@ -717,6 +719,8 @@ const downloadImage = async (imageUrl: string) => {
 };
 
 const NewGeneration: React.FC = () => {
+  const {goBack} = useNavigation();
+
   const route = useRoute();
   const {contentType, creativeType, canvasSize} = route.params as RouteParams;
   const {addPost} = useSavedPosts();
@@ -1040,6 +1044,7 @@ const NewGeneration: React.FC = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.promptContainer}>
+        <CustomHeader title="" />
         <Text style={styles.promptLabel}>Enter your keyword</Text>
         <TextInput
           style={styles.input}
@@ -1151,6 +1156,10 @@ const styles = StyleSheet.create({
     height: SCREEN_WIDTH - 32,
     borderRadius: 8,
     marginBottom: 8,
+  },
+  backButton: {
+    marginRight: 10,
+    // position: 'static',
   },
   copyCardContainer: {
     marginBottom: 16,

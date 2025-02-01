@@ -9,8 +9,10 @@ import {
   Dimensions,
 } from 'react-native';
 import {useSavedPosts} from '../context/SavedPostsContext';
-import Icon from 'react-native-vector-icons/Ionicons';
+
 import {useNavigation} from '@react-navigation/native';
+import CustomHeader from '../Components/CustomHeader';
+import {Layout} from '../constant/layout';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -20,17 +22,17 @@ const NotificationScreen = () => {
 
   if (savedPosts.length === 0) {
     return (
-      <View style={styles.emptyContainer}>
-        <Text style={styles.emptyText}>No saved posts yet</Text>
-      </View>
+      <>
+        <CustomHeader title="" />
+        <View style={styles.emptyContainer}>
+          <Text style={styles.emptyText}>No saved posts yet</Text>
+        </View>
+      </>
     );
   }
 
   return (
     <ScrollView style={styles.container}>
-      <TouchableOpacity onPress={() => goBack()} style={styles.backButton}>
-        <Icon name="arrow-back" size={24} color="#000" />
-      </TouchableOpacity>
       {savedPosts.map(post => (
         <View key={post.timestamp} style={styles.postCard}>
           <Image
@@ -63,6 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f4f4f4',
     padding: 16,
+    // padding: Layout.PADDING_HORIZONTAL_MEDIUM,
   },
   emptyContainer: {
     flex: 1,
@@ -90,9 +93,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
   },
-  backButton: {
-    marginRight: 10,
-  },
+
   postContent: {
     padding: 16,
   },

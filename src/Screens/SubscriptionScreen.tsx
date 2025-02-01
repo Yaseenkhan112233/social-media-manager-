@@ -569,6 +569,7 @@ import {
 } from 'react-native';
 import {IMAGES_PATH} from '../constant/imagesPath';
 import {Layout} from '../constant/layout';
+import CustomHeader from '../Components/CustomHeader';
 
 const SubscriptionScreen = () => {
   const [selectedOption, setSelectedOption] = useState(0);
@@ -602,6 +603,7 @@ const SubscriptionScreen = () => {
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
         {/* Top Social Media Image */}
+        <CustomHeader title="" />
         <Image
           source={IMAGES_PATH.SUBSCRIPTION}
           style={styles.topImage}

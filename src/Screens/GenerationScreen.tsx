@@ -13,6 +13,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {Layout} from '../constant/layout';
 import Icon from 'react-native-vector-icons/Ionicons';
+import CustomHeader from '../Components/CustomHeader';
 
 const GenerationScreen = () => {
   const {navigate, goBack} = useNavigation();
@@ -247,11 +248,7 @@ const GenerationScreen = () => {
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.scrollContent}>
             <View style={styles.contentContainer}>
-              <TouchableOpacity
-                onPress={() => goBack()}
-                style={styles.backButton}>
-                <Icon name="arrow-back" size={24} color="#000" />
-              </TouchableOpacity>
+              <CustomHeader title="" />
               <Text style={styles.sectionTitle}>Select Content Type</Text>
               <View style={styles.gridContainer}>
                 <View style={styles.row}>

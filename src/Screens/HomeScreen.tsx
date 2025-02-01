@@ -868,7 +868,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: Layout.PADDING_MEDIUM,
-    marginVertical: Layout.MARGIN_LARGE,
+    marginTop: Layout.MARGIN_LARGE,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -967,7 +967,7 @@ const styles = StyleSheet.create({
   },
   influencerCard: {
     alignItems: 'center',
-    marginHorizontal: Layout.MARGIN_SMALL * 0.5,
+    marginHorizontal: Layout.MARGIN_SMALL * 0.3,
     padding: Layout.PADDING_SMALL,
     width: Layout.SCREEN_WIDTH * 0.25,
   },
@@ -988,8 +988,8 @@ const styles = StyleSheet.create({
   },
   hashtagCard: {
     backgroundColor: '#1C1C1E',
-    borderRadius: 20,
-    paddingHorizontal: Layout.PADDING_SMALL * 1.2,
+    borderRadius: 15,
+    // paddingHorizontal: Layout.PADDING_SMALL * 0.5,
     paddingVertical: Layout.PADDING_MEDIUM * 0.5,
     marginHorizontal: Layout.MARGIN_SMALL * 0.4,
     minWidth: 80,

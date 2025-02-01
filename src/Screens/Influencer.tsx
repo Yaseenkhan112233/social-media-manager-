@@ -12,6 +12,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import InfluencerCard from '../Components/InfluencerCard';
 import {IMAGES_PATH} from '../constant/imagesPath';
 import {Layout} from '../constant/layout';
+import {useNavigation} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import CustomHeader from '../Components/CustomHeader';
 
 // Define interfaces
 interface Influencer {
@@ -24,6 +27,7 @@ interface Influencer {
 }
 
 const Influencer = () => {
+  const {goBack} = useNavigation();
   const [activeTab, setActiveTab] = useState<string>('Latest');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [favourites, setFavourites] = useState<Influencer[]>([]);
@@ -160,6 +164,7 @@ const Influencer = () => {
 
   return (
     <View style={styles.container}>
+      <CustomHeader title="" />
       <Text style={styles.heading}>Influencer Identification</Text>
       <View style={styles.tabContainer}>
         {['Latest', 'Top', 'Favourite'].map(tab => (
@@ -237,6 +242,7 @@ const styles = StyleSheet.create({
     padding: Layout.PADDING_SMALL,
     marginBottom: Layout.MARGIN_VERTICAL_MEDIUM,
   },
+
   tab: {
     flex: 1,
     alignItems: 'center',

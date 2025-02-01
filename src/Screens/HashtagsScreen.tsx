@@ -11,11 +11,16 @@ import {
   Dimensions, // Import Dimensions for responsive design
 } from 'react-native';
 import {Layout} from '../constant/layout';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
+import CustomHeader from '../Components/CustomHeader';
 
 // Get screen dimensions for responsiveness
 const {width, height} = Dimensions.get('window');
 
 const HashtagsScreen = () => {
+  const {goBack} = useNavigation();
+
   const [input, setInput] = useState('');
   const [allHashtags] = useState([
     {id: '1', tag: '#Love'},
@@ -144,6 +149,7 @@ const HashtagsScreen = () => {
 
   return (
     <View style={styles.container}>
+      <CustomHeader title="" />
       <Text style={styles.title}>Discover New Hashtags</Text>
       <View style={styles.searchContainer}>
         <TextInput
@@ -193,10 +199,11 @@ export default HashtagsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: Layout.PADDING_VERTICAL_LARGE * 1.6,
+    paddingVertical: Layout.PADDING_VERTICAL_MEDIUM,
     backgroundColor: '#fff',
     padding: Layout.SCREEN_WIDTH * 0.02,
   },
+
   title: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -237,7 +244,7 @@ const styles = StyleSheet.create({
     margin: Layout.MARGIN_MEDIUM * 0.7,
     padding: Layout.PADDING_LARGE,
     borderRadius: 10,
-    height: height * 0.7, // Dynamic height based on screen size
+    height: height * 0.8, // Dynamic height based on screen size
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 0},
     shadowOpacity: 0.1,
