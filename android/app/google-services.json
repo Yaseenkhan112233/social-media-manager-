@@ -1,44 +1,26 @@
 {
   "project_info": {
-    "project_number": "720225873696",
-    "project_id": "socialsmartaigenerator",
-    "storage_bucket": "socialsmartaigenerator.firebasestorage.app"
+    "project_number": "487801181499",
+    "project_id": "social-smart-ai-937f8",
+    "storage_bucket": "social-smart-ai-937f8.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:720225873696:android:e62fbfdb6955e864adb145",
+        "mobilesdk_app_id": "1:487801181499:android:443d2d5b66f6105646d31e",
         "android_client_info": {
-          "package_name": "com.socialsmartaigenerator"
+          "package_name": "com.socialsmartaigenerator.ai"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "720225873696-3otp7tatd1rujfn4pt014nq673h26oq3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.socialsmartaigenerator",
-            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
-          }
-        },
-        {
-          "client_id": "720225873696-frl0iq95c92j95cknhob77fpnub9ucod.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAeiiWtn2kr_aYS5v1iR_TyqhH_HeydYUo"
+          "current_key": "AIzaSyCrOIpDUSObYmXToV9Si0WWV7nYl-fQcpY"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "720225873696-frl0iq95c92j95cknhob77fpnub9ucod.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
