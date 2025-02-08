@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "192777531312",
-    "project_id": "social-smart-ai",
-    "storage_bucket": "social-smart-ai.firebasestorage.app"
+    "project_number": "487801181499",
+    "project_id": "social-smart-ai-937f8",
+    "storage_bucket": "social-smart-ai-937f8.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:192777531312:android:6f9961abb33e78d046b075",
+        "mobilesdk_app_id": "1:487801181499:android:443d2d5b66f6105646d31e",
         "android_client_info": {
-          "package_name": "com.socialsmartaigenerator"
+          "package_name": "com.socialsmartaigenerator.ai"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "192777531312-8g3pa16egl58r2qh8u0eicni6n7l02qk.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDcIjNhrctRMUPOcFh5VChWlgrxpHjSu-8"
+          "current_key": "AIzaSyCrOIpDUSObYmXToV9Si0WWV7nYl-fQcpY"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "192777531312-8g3pa16egl58r2qh8u0eicni6n7l02qk.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
