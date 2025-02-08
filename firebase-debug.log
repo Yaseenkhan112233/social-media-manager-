@@ -1,0 +1,136 @@
+[debug] [2025-02-08T08:19:07.001Z] ----------------------------------------------------------------------
+[debug] [2025-02-08T08:19:07.004Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\yasee\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-02-08T08:19:07.005Z] CLI Version:   13.16.0
+[debug] [2025-02-08T08:19:07.005Z] Platform:      win32
+[debug] [2025-02-08T08:19:07.005Z] Node Version:  v20.17.0
+[debug] [2025-02-08T08:19:07.006Z] Time:          Sat Feb 08 2025 13:19:07 GMT+0500 (Pakistan Standard Time)
+[debug] [2025-02-08T08:19:07.006Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-02-08T08:19:07.105Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-08T08:19:07.105Z] > authorizing via signed-in user (yk5793790@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\yasee
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-02-08T08:19:13.967Z] Using project from CLI flag: foodyzonebyford9
+[debug] [2025-02-08T08:19:13.971Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/foodyzonebyford9 [none]
+[debug] [2025-02-08T08:19:14.744Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/foodyzonebyford9 200
+[debug] [2025-02-08T08:19:14.744Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/foodyzonebyford9 {"projectId":"foodyzonebyford9","projectNumber":"1050697403114","displayName":"FoodyZoneByFord9","name":"projects/foodyzonebyford9","resources":{"hostingSite":"foodyzonebyford9","realtimeDatabaseInstance":"foodyzonebyford9-default-rtdb","locationId":"us-central"},"state":"ACTIVE","etag":"1_7446bc0d-7893-4694-88b0-b8c75b6b379b"}
+[info] i  Using project foodyzonebyford9 (FoodyZoneByFord9) 
+[info] 
+=== Functions Setup
+[debug] [2025-02-08T08:19:14.764Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-08T08:19:14.766Z] > authorizing via signed-in user (yk5793790@gmail.com)
+[debug] [2025-02-08T08:19:14.766Z] [iam] checking project foodyzonebyford9 for permissions ["firebase.projects.get"]
+[debug] [2025-02-08T08:19:14.769Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodyzonebyford9:testIamPermissions [none]
+[debug] [2025-02-08T08:19:14.770Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodyzonebyford9:testIamPermissions x-goog-quota-user=projects/foodyzonebyford9
+[debug] [2025-02-08T08:19:14.770Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodyzonebyford9:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-02-08T08:19:15.525Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodyzonebyford9:testIamPermissions 200
+[debug] [2025-02-08T08:19:15.526Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodyzonebyford9:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-02-08T08:19:15.528Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-02-08T08:19:15.529Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/foodyzonebyford9
+[debug] [2025-02-08T08:19:15.533Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-02-08T08:19:15.534Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/foodyzonebyford9
+[debug] [2025-02-08T08:19:17.137Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/runtimeconfig.googleapis.com 200
+[debug] [2025-02-08T08:19:17.137Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2025-02-08T08:19:17.168Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/cloudfunctions.googleapis.com 200
+[debug] [2025-02-08T08:19:17.168Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/cloudfunctions.googleapis.com [omitted]
+[info] Let's create a new codebase for your functions.
+[info] A directory corresponding to the codebase will be created in your project
+[info] with sample code pre-configured.
+
+[info] See https://firebase.google.com/docs/functions/organize-functions for
+[info] more information on organizing your functions using codebases.
+
+[info] Functions can be deployed with firebase deploy.
+
+[info] +  Wrote functions/package.json 
+[info] +  Wrote functions/index.js 
+[info] +  Wrote functions/.gitignore 
+[debug] [2025-02-08T09:46:41.949Z] ----------------------------------------------------------------------
+[debug] [2025-02-08T09:46:41.959Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\yasee\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init functions
+[debug] [2025-02-08T09:46:41.961Z] CLI Version:   13.16.0
+[debug] [2025-02-08T09:46:41.961Z] Platform:      win32
+[debug] [2025-02-08T09:46:41.962Z] Node Version:  v20.17.0
+[debug] [2025-02-08T09:46:41.962Z] Time:          Sat Feb 08 2025 14:46:41 GMT+0500 (Pakistan Standard Time)
+[debug] [2025-02-08T09:46:41.963Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-02-08T09:46:42.432Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-08T09:46:42.435Z] > authorizing via signed-in user (yk5793790@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\yasee
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-02-08T09:46:45.763Z] Using project from CLI flag: foodyzonebyford9
+[debug] [2025-02-08T09:46:45.766Z] > refreshing access token with scopes: []
+[debug] [2025-02-08T09:46:45.769Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-02-08T09:46:45.769Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-02-08T09:46:46.568Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-02-08T09:46:46.569Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-02-08T09:46:46.600Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/foodyzonebyford9 [none]
+[debug] [2025-02-08T09:46:47.318Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/foodyzonebyford9 200
+[debug] [2025-02-08T09:46:47.319Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/foodyzonebyford9 {"projectId":"foodyzonebyford9","projectNumber":"1050697403114","displayName":"FoodyZoneByFord9","name":"projects/foodyzonebyford9","resources":{"hostingSite":"foodyzonebyford9","realtimeDatabaseInstance":"foodyzonebyford9-default-rtdb","locationId":"us-central"},"state":"ACTIVE","etag":"1_7446bc0d-7893-4694-88b0-b8c75b6b379b"}
+[info] i  Using project foodyzonebyford9 (FoodyZoneByFord9) 
+[info] 
+=== Functions Setup
+[debug] [2025-02-08T09:46:47.340Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-08T09:46:47.342Z] > authorizing via signed-in user (yk5793790@gmail.com)
+[debug] [2025-02-08T09:46:47.342Z] [iam] checking project foodyzonebyford9 for permissions ["firebase.projects.get"]
+[debug] [2025-02-08T09:46:47.347Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodyzonebyford9:testIamPermissions [none]
+[debug] [2025-02-08T09:46:47.348Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodyzonebyford9:testIamPermissions x-goog-quota-user=projects/foodyzonebyford9
+[debug] [2025-02-08T09:46:47.349Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodyzonebyford9:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-02-08T09:46:49.068Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodyzonebyford9:testIamPermissions 200
+[debug] [2025-02-08T09:46:49.069Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/foodyzonebyford9:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-02-08T09:46:49.072Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-02-08T09:46:49.073Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/foodyzonebyford9
+[debug] [2025-02-08T09:46:49.079Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-02-08T09:46:49.080Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/foodyzonebyford9
+[debug] [2025-02-08T09:46:50.981Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/cloudfunctions.googleapis.com 200
+[debug] [2025-02-08T09:46:50.982Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2025-02-08T09:46:50.996Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/runtimeconfig.googleapis.com 200
+[debug] [2025-02-08T09:46:50.997Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/foodyzonebyford9/services/runtimeconfig.googleapis.com [omitted]
+[info] Let's create a new codebase for your functions.
+[info] A directory corresponding to the codebase will be created in your project
+[info] with sample code pre-configured.
+
+[info] See https://firebase.google.com/docs/functions/organize-functions for
+[info] more information on organizing your functions using codebases.
+
+[info] Functions can be deployed with firebase deploy.
+

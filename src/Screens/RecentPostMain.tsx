@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {RecentPostStackParamList} from '../navigation/NavigationTypes';
+import {Layout} from '../constant/layout';
 
 type RecentPostScreenRouteProp = RouteProp<
   RecentPostStackParamList,
@@ -25,6 +26,7 @@ const RecentPostScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // paddingHorizontal: Layout.PADDING_HORIZONTAL_LARGE,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,

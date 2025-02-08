@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10,
+    // paddingVertical: 10,
     // paddingHorizontal: 16,
     color: '#000',
     // backgroundColor: '#007BFF', // Customize the background color as needed
   },
   backButton: {
-    marginRight: 16,
+    // marginRight: 16,
     color: '#000', // Customize the back button color as needed
   },
   headerTitle: {

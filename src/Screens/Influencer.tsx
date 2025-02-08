@@ -12,8 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import InfluencerCard from '../Components/InfluencerCard';
 import {IMAGES_PATH} from '../constant/imagesPath';
 import {Layout} from '../constant/layout';
-import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Ionicons';
+
 import CustomHeader from '../Components/CustomHeader';
 
 // Define interfaces
@@ -23,11 +22,9 @@ interface Influencer {
   role: string;
   image: string;
   isFavourite: boolean;
-  // fav : any
 }
 
-const Influencer = () => {
-  const {goBack} = useNavigation();
+const Influencer = ({route}) => {
   const [activeTab, setActiveTab] = useState<string>('Latest');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [favourites, setFavourites] = useState<Influencer[]>([]);
@@ -54,6 +51,8 @@ const Influencer = () => {
       isFavourite: false,
     },
   ]);
+
+  const isFromHomeStack = route.params?.fromHomeStack;
 
   const [topInfluencers, setTopInfluencers] = useState<Influencer[]>([
     {
@@ -102,7 +101,6 @@ const Influencer = () => {
     loadFavourites();
   }, []);
 
-  // Save favourites to AsyncStorage
   const saveFavourites = async (updatedFavourites: Influencer[]) => {
     try {
       await AsyncStorage.setItem(
@@ -164,7 +162,13 @@ const Influencer = () => {
 
   return (
     <View style={styles.container}>
-      <CustomHeader title="" />
+      {/* Conditionally render the CustomHeader only if the screen is from Home Stack */}
+      {isFromHomeStack && (
+        <View>
+          <CustomHeader title="" />
+        </View>
+      )}
+
       <Text style={styles.heading}>Influencer Identification</Text>
       <View style={styles.tabContainer}>
         {['Latest', 'Top', 'Favourite'].map(tab => (
@@ -242,7 +246,6 @@ const styles = StyleSheet.create({
     padding: Layout.PADDING_SMALL,
     marginBottom: Layout.MARGIN_VERTICAL_MEDIUM,
   },
-
   tab: {
     flex: 1,
     alignItems: 'center',
@@ -272,17 +275,6 @@ const styles = StyleSheet.create({
     padding: Layout.PADDING_HORIZONTAL_SMALL,
     borderWidth: 1,
     borderColor: '#ddd',
-  },
-  searchButton: {
-    backgroundColor: '#000',
-    borderRadius: Layout.PADDING_SMALL,
-    marginLeft: Layout.MARGIN_HORIZONTAL_SMALL,
-    paddingVertical: Layout.PADDING_VERTICAL_SMALL,
-    paddingHorizontal: Layout.PADDING_HORIZONTAL_MEDIUM,
-  },
-  searchButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
   },
   cardsContainer: {
     flexGrow: 1,

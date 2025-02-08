@@ -603,7 +603,13 @@ const SubscriptionScreen = () => {
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
         {/* Top Social Media Image */}
-        <CustomHeader title="" />
+        <View
+          style={{
+            marginHorizontal: Layout.MARGIN_SMALL,
+            marginTop: Layout.MARGIN_SMALL,
+          }}>
+          <CustomHeader title="" />
+        </View>
         <Image
           source={IMAGES_PATH.SUBSCRIPTION}
           style={styles.topImage}
@@ -696,6 +702,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    // marginRight: Layout.MARGIN_HORIZONTAL_MEDIUM,
   },
   topImage: {
     width: Layout.SCREEN_WIDTH,
@@ -743,6 +750,7 @@ const styles = StyleSheet.create({
   radioContainer: {
     marginRight: Layout.MARGIN_HORIZONTAL_SMALL,
   },
+
   radioOuter: {
     width: Layout.SCREEN_WIDTH * 0.05,
     height: Layout.SCREEN_WIDTH * 0.05,
