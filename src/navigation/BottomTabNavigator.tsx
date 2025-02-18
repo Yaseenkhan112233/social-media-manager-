@@ -32,7 +32,7 @@ export const BottomTabNavigator = () => {
       screenOptions={({route, navigation}) => ({
         headerShown: false,
         tabBarIcon: ({color, size, focused}) => {
-          const iconMap = {
+          const iconMap: any = {
             Home: 'home',
             History: 'time',
             Influencer: 'star',

@@ -189,7 +189,7 @@ const GenerationScreen = () => {
   }, [selectedType, selectedCreativeType, selectedCanvasSize, navigate]);
 
   const renderContentTypeCard = useCallback(
-    ({id, title, description, icon}) => (
+    ({id, title, description, icon}: any) => (
       <TouchableOpacity
         key={id}
         style={[styles.card, selectedType === id && styles.selectedCard]}
@@ -203,7 +203,7 @@ const GenerationScreen = () => {
   );
 
   const renderCreativeTypeCard = useCallback(
-    ({id, title, description, icon}) => (
+    ({id, title, description, icon}: any) => (
       <TouchableOpacity
         key={id}
         style={[
@@ -220,7 +220,7 @@ const GenerationScreen = () => {
   );
 
   const renderCanvasSizeCard = useCallback(
-    ({id, title, dimensions, icon}) => (
+    ({id, title, dimensions, icon}: any) => (
       <TouchableOpacity
         key={id}
         style={[

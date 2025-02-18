@@ -10,21 +10,24 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 // Bottom Tab Navigator Params
 export type BottomTabParamList = {
   Home: undefined;
+  Influencer: undefined;
   Profile: undefined;
   Notifications: undefined;
+  History: undefined;
   Settings: undefined;
   RecentPost: undefined; // Changed from 'RecentPosts' to match other usages
   // RecentPostMain: {Id: string}; // If you are passing postId to RecentPostScreen
 };
 
 // Nested Stack Navigator Params for each Tab
-export type HomeStackParamList = {
-  HomeMain: undefined;
-  HomeDetail: {id: string};
-};
+// export type HomeStackParamList = {
+//   HomeMain: undefined;
+//   HomeDetail: {id: string};
+// };
 
 export type ProfileStackParamList = {
   ProfileMain: undefined;
+  influencer: undefined;
   ProfileDetail: {id: string};
 };
 
@@ -35,6 +38,7 @@ export type NotificationsStackParamList = {
 
 export type SettingsStackParamList = {
   SettingsMain: undefined;
+  SubscriptionScreen: undefined;
   SettingsDetail: {id: string};
 };
 
@@ -69,3 +73,15 @@ export type RecentPostScreenProps = CompositeScreenProps<
   BottomTabScreenProps<BottomTabParamList, 'RecentPost'>, // Updated to match BottomTabParamList
   NativeStackScreenProps<RecentPostStackParamList>
 >;
+export type HomeStackParamList = {
+  HomeMain: undefined; // No parameters for HomeMain
+  HomeDetail: undefined; // No parameters for HomeDetail
+  RecentPost: {id: string; title: string; description: string; image: string}; // Parameters for RecentPost
+  GenerationScreen: undefined; // No parameters for GenerationScreen
+  SettingsScreen: undefined; // No parameters for SettingsScreen
+  HashtagsScreen: undefined; // No parameters for HashtagsScreen
+  Influencer: undefined; // No parameters for Influencer
+  NewGeneration: undefined; // No parameters for NewGeneration
+  NotificationsMain: undefined; // No parameters for NotificationsMain
+  SubscriptionScreen: undefined; // No parameters for SubscriptionScreen
+};
