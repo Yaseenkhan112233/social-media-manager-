@@ -260,7 +260,7 @@
 
 // export default NotificationScreen;
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -269,6 +269,8 @@ import {
   Image,
   TouchableOpacity,
   Dimensions,
+  Modal,
+  Pressable,
 } from 'react-native';
 import {useSavedPosts} from '../context/SavedPostsContext';
 
@@ -278,16 +280,43 @@ import {Layout} from '../constant/layout';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-const NotificationScreen = ({route}) => {
+const NotificationScreen = ({route}: any) => {
   const {savedPosts, removePost} = useSavedPosts();
+
+  // State for managing the modal visibility and selected post
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   // Check if the screen was navigated from HomeStack or BottomTab
   const isFromHomeStack = route.params?.fromHomeStack;
 
+  const handleRemovePress = (post: any) => {
+    setSelectedPost(post); // Store the selected post to remove
+    setIsModalVisible(true); // Show the confirmation modal
+  };
+
+  const handleConfirmRemove = () => {
+    if (selectedPost) {
+      removePost(selectedPost.timestamp); // Remove the post if confirmed
+    }
+    setIsModalVisible(false); // Close the modal
+  };
+
+  const handleCancelRemove = () => {
+    setIsModalVisible(false); // Close the modal without removing
+  };
+
   return (
     <>
       {isFromHomeStack && (
-        <View style={{paddingHorizontal: Layout.PADDING_HORIZONTAL_SMALL}}>
+        <View
+          style={{
+            paddingHorizontal: Layout.PADDING_HORIZONTAL_SMALL,
+            marginTop: 20,
+            position: 'fixed',
+
+            width: '100%',
+          }}>
           <CustomHeader title="Saved Posts" />
         </View>
       )}
@@ -318,13 +347,41 @@ const NotificationScreen = ({route}) => {
               </View>
               <TouchableOpacity
                 style={styles.removeButton}
-                onPress={() => removePost(post.timestamp)}>
+                onPress={() => handleRemovePress(post)}>
                 <Text style={styles.removeButtonText}>Remove</Text>
               </TouchableOpacity>
             </View>
           ))}
         </ScrollView>
       )}
+
+      {/* Confirmation Modal */}
+      <Modal
+        transparent={true}
+        animationType="fade"
+        visible={isModalVisible}
+        onRequestClose={handleCancelRemove}>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalTitle}>Are you sure?</Text>
+            <Text style={styles.modalMessage}>
+              Do you really want to remove this post?
+            </Text>
+            <View style={styles.modalButtons}>
+              <Pressable
+                style={styles.cancelButton}
+                onPress={handleCancelRemove}>
+                <Text style={styles.modalButtonText}>Cancel</Text>
+              </Pressable>
+              <Pressable
+                style={styles.confirmButton}
+                onPress={handleConfirmRemove}>
+                <Text style={styles.modalButtonText}>Confirm</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </>
   );
 };
@@ -372,24 +429,73 @@ const styles = StyleSheet.create({
   },
   postDescription: {
     fontSize: 14,
-    color: '#555',
+    color: '#777',
     marginBottom: 8,
-    lineHeight: 20,
   },
   postHashtags: {
-    fontSize: 14,
-    color: '#007BFF',
+    fontSize: 12,
+    color: '#999',
   },
   removeButton: {
-    backgroundColor: '#dc3545',
-    padding: 8,
-    borderBottomLeftRadius: 8,
-    borderBottomRightRadius: 8,
-    alignItems: 'center',
+    backgroundColor: '#ff6b6b',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    marginTop: 10,
+    // alignSelf: 'flex-center',
   },
   removeButtonText: {
     color: '#fff',
+    fontSize: 14,
+    alignSelf: 'center',
+  },
+
+  // Modal styles
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContainer: {
+    width: SCREEN_WIDTH - 50,
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  modalTitle: {
+    fontSize: 18,
     fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  modalMessage: {
+    fontSize: 14,
+    color: '#333',
+    marginBottom: 20,
+  },
+  modalButtons: {
+    flexDirection: 'row',
+    // justifyContent: 'space-between',
+    width: '100%',
+    // alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  cancelButton: {
+    backgroundColor: '#cc7',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+  },
+  confirmButton: {
+    backgroundColor: '#ff6b6b',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+  },
+  modalButtonText: {
+    color: '#fff',
+    fontSize: 16,
   },
 });
 

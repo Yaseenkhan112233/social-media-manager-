@@ -45,6 +45,7 @@
 // });
 
 // export default RecentPostScreen;
+
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';

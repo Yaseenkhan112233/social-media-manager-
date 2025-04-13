@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     // backgroundColor: '#007BFF', // Customize the background color as needed
   },
   backButton: {
-    // marginRight: 16,
+    marginRight: 6,
     color: '#000', // Customize the back button color as needed
   },
   headerTitle: {

@@ -713,6 +713,7 @@ const NewGeneration: React.FC = () => {
       single: {
         width,
         height,
+        marginBottom: 10,
       },
       multiple: {
         width: (baseWidth - 16) / 3,
@@ -730,7 +731,52 @@ const NewGeneration: React.FC = () => {
   ];
 
   // Function to generate content using your backend API
-  const API_URL = 'http://192.168.1.11:5000/generate-text'; // Update with your PC's IP
+  // const API_URL = 'http://192.168.1.19:5000/generate-content'; // Update with your PC's IP
+  // const handleGenerate = useCallback(async () => {
+  //   const trimmedPrompt = prompt.trim();
+  //   if (!trimmedPrompt) {
+  //     setError('Please enter a keyword');
+  //     setFilteredData([]);
+  //     return;
+  //   }
+  //   setLoading(true);
+  //   setError('');
+  //   try {
+  //     console.log('Making API request to:', API_URL);
+  //     const response = await axios.post(API_URL, {prompt: trimmedPrompt});
+  //     console.log('API response:', response.data);
+
+  //     // Destructure from response.data.data since we wrapped the response
+  //     const {data} = response.data;
+
+  //     const generatedContent: ContentItem = {
+  //       title: data.title || 'No Title', // Fallback for missing title
+  //       description: data.description || 'No description available.', // Fallback for missing description
+  //       hashtags:
+  //         typeof data.hashtags === 'string'
+  //           ? data.hashtags.split(' ')
+  //           : data.hashtags,
+  //       images: data.images,
+  //       keywords: [], // Add keywords if needed
+  //       timestamp: Date.now(), // Add a timestamp for uniqueness
+  //     };
+
+  //     // Save the generated content using the addPost function
+  //     await addPost(generatedContent);
+
+  //     setFilteredData([generatedContent]);
+  //     // Alert.alert('Success', 'Generated content has been saved!');
+  //   } catch (err: any) {
+  //     console.error('Full error object:', err);
+  //     console.error('Error fetching data from API:', err.message);
+  //     setError('An error occurred while generating content');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }, [prompt, addPost]);
+
+  const API_URL = 'http://192.168.227.90:5000/generate-content'; // Update with your PC's IP
+
   const handleGenerate = useCallback(async () => {
     const trimmedPrompt = prompt.trim();
     if (!trimmedPrompt) {
@@ -738,36 +784,51 @@ const NewGeneration: React.FC = () => {
       setFilteredData([]);
       return;
     }
+
     setLoading(true);
     setError('');
+
     try {
       console.log('Making API request to:', API_URL);
       const response = await axios.post(API_URL, {prompt: trimmedPrompt});
       console.log('API response:', response.data);
 
-      // Destructure from response.data.data since we wrapped the response
+      // Destructure from response.data.data
       const {data} = response.data;
 
+      // Check the console log to see exactly what's coming back
+      console.log('Image data received:', data.image);
+
       const generatedContent: ContentItem = {
-        title: data.title || 'No Title', // Fallback for missing title
-        description: data.description || 'No description available.', // Fallback for missing description
+        title: data.title || 'No Title',
+        description: data.description || 'No description available.',
         hashtags:
           typeof data.hashtags === 'string'
             ? data.hashtags.split(' ')
             : data.hashtags,
-        images: data.images,
-        keywords: [], // Add keywords if needed
-        timestamp: Date.now(), // Add a timestamp for uniqueness
+        // Fix: Convert single image string to array if that's what's returned
+        images: data.image ? [data.image] : data.images || [],
+        keywords: [],
+        timestamp: Date.now(),
       };
+
+      // Log the final object to verify structure
+      console.log('Generated content:', generatedContent);
 
       // Save the generated content using the addPost function
       await addPost(generatedContent);
 
       setFilteredData([generatedContent]);
-      Alert.alert('Success', 'Generated content has been saved!');
     } catch (err: any) {
       console.error('Full error object:', err);
       console.error('Error fetching data from API:', err.message);
+
+      if (err.response) {
+        console.error('API error response:', err.response.data);
+      } else if (err.request) {
+        console.error('No response received:', err.request);
+      }
+
       setError('An error occurred while generating content');
     } finally {
       setLoading(false);
@@ -903,9 +964,13 @@ const NewGeneration: React.FC = () => {
             <View style={styles.copyCardContainer}>
               <Text style={styles.copyCardTitle}>Hashtags</Text>
               <View style={styles.copyCardContent}>
-                <Text style={styles.copyCardText}>
-                  {item.hashtags.join(' ')}
-                </Text>
+                <View>
+                  {item.hashtags.map((tag, index) => (
+                    <Text key={index} style={styles.copyCardText}>
+                      #{tag.trim()}
+                    </Text>
+                  ))}
+                </View>
                 <TouchableOpacity
                   style={styles.copyButton}
                   onPress={() => handleCopy(item.hashtags.join(' '))}>
@@ -934,6 +999,9 @@ const NewGeneration: React.FC = () => {
           value={prompt}
           onChangeText={setPrompt}
           placeholder="Enter keyword..."
+          placeholderTextColor={'#000'}
+          multiline
+          numberOfLines={4}
         />
         <TouchableOpacity
           style={styles.generateButton}
@@ -941,14 +1009,17 @@ const NewGeneration: React.FC = () => {
           <Text style={styles.generateButtonText}>Generate</Text>
         </TouchableOpacity>
       </View>
+      <View style={styles.infoContainer}>
+        <Text style={styles.infoLabel}>📌 Selected Parameters</Text>
+        <View style={styles.infoRow}>
+          <Text style={styles.infoText}>📝 Content Type: {contentType}</Text>
+          <Text style={styles.infoText}>🎨 Creative Type: {creativeType}</Text>
+          <Text style={styles.infoText}>📐 Canvas Size: {canvasSize}</Text>
+        </View>
+      </View>
+
       {renderContent()}
       {renderImageModal()}
-      <View style={styles.infoContainer}>
-        <Text style={styles.infoLabel}>Selected Parameters</Text>
-        <Text style={styles.infoText}>Content Type: {contentType}</Text>
-        <Text style={styles.infoText}>Creative Type: {creativeType}</Text>
-        <Text style={styles.infoText}>Canvas Size: {canvasSize}</Text>
-      </View>
     </ScrollView>
   );
 };
@@ -972,13 +1043,14 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    height: 50,
+    height: 120,
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 16,
     backgroundColor: '#fff',
     color: '#333',
+    textAlignVertical: 'top',
   },
   generateButton: {
     backgroundColor: '#1c1c1c',
@@ -1058,28 +1130,34 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   infoContainer: {
-    marginTop: 16,
     width: '100%',
-    backgroundColor: '#fff',
-    padding: 16,
-    borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 4,
+    marginTop: 3,
   },
+
   infoLabel: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 8,
     color: '#333',
+    marginBottom: 8,
   },
+
+  infoRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#ccc', // light blue background
+    padding: 10,
+    borderRadius: 8,
+    marginBottom: 5,
+  },
+
   infoText: {
     fontSize: 14,
     color: '#555',
-    marginBottom: 8,
+    marginRight: 12,
   },
+
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(28, 28, 28, 0.98)', // Dark overlay using your 1c1c1c color
