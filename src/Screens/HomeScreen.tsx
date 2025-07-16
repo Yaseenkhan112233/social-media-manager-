@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   influencerList: {
-    marginVertical: Layout.MARGIN_SMALL * 0.2,
+    marginVertical: Layout.MARGIN_SMALL * 0.9,
   },
   influencerCard: {
     alignItems: 'center',

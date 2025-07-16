@@ -586,6 +586,8 @@ import ReactNativeBlobUtil from 'react-native-blob-util';
 import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import {IMAGES_PATH} from '../constant/imagesPath';
 import {useSavedPosts} from '../context/SavedPostsContext'; // Import SavedPostsContext
+import Share from 'react-native-share';
+import RNFetchBlob from 'rn-fetch-blob';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -722,6 +724,53 @@ const NewGeneration: React.FC = () => {
       },
     };
   }, [canvasSize]);
+  // handle share
+  // const handleShare = async (item: ContentItem) => {
+  //   try {
+  //     const shareOptions = {
+  //       title: item.title,
+  //       message: `${item.title}\n${item.description}\n#${item.hashtags.join(
+  //         ' #',
+  //       )}`,
+  //       url: item.images[0], // You can use the first image or any specific image URL here.
+  //     };
+
+  //     const result = await Share.open(shareOptions);
+  //     console.log('Share result:', result);
+  //   } catch (error) {
+  //     console.error('Error sharing content:', error);
+  //   }
+  // };
+
+  const handleShare = async (item: ContentItem) => {
+    try {
+      const imageUrl = item.images[0];
+
+      const res = await RNFetchBlob.config({
+        fileCache: true,
+      }).fetch('GET', imageUrl);
+
+      const localPath = res.path();
+
+      const base64Data = await res.base64();
+
+      const shareOptions = {
+        title: item.title,
+        message: `${item.title}\n${item.description}\n#${item.hashtags.join(
+          ' #',
+        )}`,
+        url: 'data:image/jpeg;base64,' + base64Data, // ✅ Use base64 here for sharing
+        type: 'image/jpeg',
+      };
+
+      const result = await Share.open(shareOptions);
+      console.log('Share result:', result);
+
+      await RNFetchBlob.fs.unlink(localPath); // Cleanup
+    } catch (error) {
+      console.error('Error sharing content:', error);
+    }
+  };
 
   // Dummy static images (you can replace these with your own static images)
   const STATIC_IMAGES = [
@@ -730,52 +779,7 @@ const NewGeneration: React.FC = () => {
     IMAGES_PATH.THIRD_SLIDER,
   ];
 
-  // Function to generate content using your backend API
-  // const API_URL = 'http://192.168.1.19:5000/generate-content'; // Update with your PC's IP
-  // const handleGenerate = useCallback(async () => {
-  //   const trimmedPrompt = prompt.trim();
-  //   if (!trimmedPrompt) {
-  //     setError('Please enter a keyword');
-  //     setFilteredData([]);
-  //     return;
-  //   }
-  //   setLoading(true);
-  //   setError('');
-  //   try {
-  //     console.log('Making API request to:', API_URL);
-  //     const response = await axios.post(API_URL, {prompt: trimmedPrompt});
-  //     console.log('API response:', response.data);
-
-  //     // Destructure from response.data.data since we wrapped the response
-  //     const {data} = response.data;
-
-  //     const generatedContent: ContentItem = {
-  //       title: data.title || 'No Title', // Fallback for missing title
-  //       description: data.description || 'No description available.', // Fallback for missing description
-  //       hashtags:
-  //         typeof data.hashtags === 'string'
-  //           ? data.hashtags.split(' ')
-  //           : data.hashtags,
-  //       images: data.images,
-  //       keywords: [], // Add keywords if needed
-  //       timestamp: Date.now(), // Add a timestamp for uniqueness
-  //     };
-
-  //     // Save the generated content using the addPost function
-  //     await addPost(generatedContent);
-
-  //     setFilteredData([generatedContent]);
-  //     // Alert.alert('Success', 'Generated content has been saved!');
-  //   } catch (err: any) {
-  //     console.error('Full error object:', err);
-  //     console.error('Error fetching data from API:', err.message);
-  //     setError('An error occurred while generating content');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }, [prompt, addPost]);
-
-  const API_URL = 'http://192.168.227.90:5000/generate-content'; // Update with your PC's IP
+  const API_URL = 'http://192.168.100.3:5000/generate-content'; // Update with your PC's IP
 
   const handleGenerate = useCallback(async () => {
     const trimmedPrompt = prompt.trim();
@@ -922,6 +926,67 @@ const NewGeneration: React.FC = () => {
   );
 
   // Render content items
+  // const renderContent = () => {
+  //   if (loading) {
+  //     return (
+  //       <View style={styles.loading}>
+  //         <ActivityIndicator size="large" color="#1c1c1c" />
+  //         <Text style={styles.loadingText}>Generating content...</Text>
+  //       </View>
+  //     );
+  //   }
+  //   if (error) {
+  //     return <Text style={styles.errorText}>{error}</Text>;
+  //   }
+  //   return (
+  //     <ScrollView>
+  //       {filteredData.map((item, index) => (
+  //         <View style={styles.itemContainer} key={index}>
+  //           {renderImages(item)}
+  //           <View style={styles.copyCardContainer}>
+  //             <Text style={styles.copyCardTitle}>Title</Text>
+  //             <View style={styles.copyCardContent}>
+  //               <Text style={styles.copyCardText}>{item.title}</Text>
+  //               <TouchableOpacity
+  //                 style={styles.copyButton}
+  //                 onPress={() => handleCopy(item.title)}>
+  //                 <Text style={styles.copyButtonText}>Copy</Text>
+  //               </TouchableOpacity>
+  //             </View>
+  //           </View>
+  //           <View style={styles.copyCardContainer}>
+  //             <Text style={styles.copyCardTitle}>Description</Text>
+  //             <View style={styles.copyCardContent}>
+  //               <Text style={styles.copyCardText}>{item.description}</Text>
+  //               <TouchableOpacity
+  //                 style={styles.copyButton}
+  //                 onPress={() => handleCopy(item.description)}>
+  //                 <Text style={styles.copyButtonText}>Copy</Text>
+  //               </TouchableOpacity>
+  //             </View>
+  //           </View>
+  //           <View style={styles.copyCardContainer}>
+  //             <Text style={styles.copyCardTitle}>Hashtags</Text>
+  //             <View style={styles.copyCardContent}>
+  //               <View>
+  //                 {item.hashtags.map((tag, index) => (
+  //                   <Text key={index} style={styles.copyCardText}>
+  //                     #{tag.trim()}
+  //                   </Text>
+  //                 ))}
+  //               </View>
+  //               <TouchableOpacity
+  //                 style={styles.copyButton}
+  //                 onPress={() => handleCopy(item.hashtags.join(' '))}>
+  //                 <Text style={styles.copyButtonText}>Copy</Text>
+  //               </TouchableOpacity>
+  //             </View>
+  //           </View>
+  //         </View>
+  //       ))}
+  //     </ScrollView>
+  //   );
+  // };
   const renderContent = () => {
     if (loading) {
       return (
@@ -939,6 +1004,8 @@ const NewGeneration: React.FC = () => {
         {filteredData.map((item, index) => (
           <View style={styles.itemContainer} key={index}>
             {renderImages(item)}
+
+            {/* Title Section */}
             <View style={styles.copyCardContainer}>
               <Text style={styles.copyCardTitle}>Title</Text>
               <View style={styles.copyCardContent}>
@@ -950,6 +1017,8 @@ const NewGeneration: React.FC = () => {
                 </TouchableOpacity>
               </View>
             </View>
+
+            {/* Description Section */}
             <View style={styles.copyCardContainer}>
               <Text style={styles.copyCardTitle}>Description</Text>
               <View style={styles.copyCardContent}>
@@ -961,6 +1030,8 @@ const NewGeneration: React.FC = () => {
                 </TouchableOpacity>
               </View>
             </View>
+
+            {/* Hashtags Section */}
             <View style={styles.copyCardContainer}>
               <Text style={styles.copyCardTitle}>Hashtags</Text>
               <View style={styles.copyCardContent}>
@@ -978,6 +1049,10 @@ const NewGeneration: React.FC = () => {
                 </TouchableOpacity>
               </View>
             </View>
+
+            <TouchableOpacity onPress={() => handleShare(item)}>
+              <Text style={styles.copyCardText}>Share</Text>
+            </TouchableOpacity>
           </View>
         ))}
       </ScrollView>
@@ -1206,6 +1281,18 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: '500',
+  },
+  shareButton: {
+    marginTop: 16,
+    padding: 12,
+    backgroundColor: '#1E90FF',
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  shareButtonText: {
+    color: '#fff',
+    fontSize: 16,
   },
 });
 
